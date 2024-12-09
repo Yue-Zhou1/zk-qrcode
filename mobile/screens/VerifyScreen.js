@@ -1,6 +1,7 @@
 import React, { useState, useEffect,Fragment } from 'react';
 import { View, Text, Platform, TouchableOpacity, StyleSheet, Dimensions, Button } from 'react-native';
-import {BarCodeScanner} from "expo-barcode-scanner";
+// import {BarCodeScanner} from "expo-barcode-scanner";
+import { CameraView, Camera } from "expo-camera";
 import Constants from 'expo-constants';
 
 const API_URL = Platform.OS === 'ios' ? 'http://10.1.1.164:3000' : 'http://localhost:3000';
@@ -14,7 +15,7 @@ const HomeScreen = ({navigation}) =>{
 
     const handleBarCodeScanned = ({type, data}) => {
         setScanned(true);
-
+        onCancelScan();
         const qrcode = data.split("|")[1];
         // qrcode 1: Age Proof;
         // qrcode 2: Merkle Tree;
@@ -115,9 +116,10 @@ const HomeScreen = ({navigation}) =>{
     return (
         <View style={styles.box}>
             {displayScan && 
-                        <BarCodeScanner
-                        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                        style={[StyleSheet.absoluteFillObject, styles.container]} barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}>
+                        <CameraView
+                        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+                        barcodeScannerSettings={{barcodeTypes: ["qr"],}}
+                        style={[StyleSheet.absoluteFillObject, styles.container]}>
                         <Text style={styles.description}>Scan The QR code</Text>
                         <View
                             style={styles.qr}
@@ -125,7 +127,7 @@ const HomeScreen = ({navigation}) =>{
                         <Text onPress={onCancelScan} style={styles.cancel}>
                             Cancel
                         </Text>
-                        </BarCodeScanner>
+                        </CameraView>
                         }
             {displayScan && scanned && <Button title={'Tap to Scan Again'} onPress={onCancelScan}/>
                             }

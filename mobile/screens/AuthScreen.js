@@ -19,7 +19,7 @@ const AuthScreen = ({navigation, route}) =>{
     const [age, setAge] = useState('');
 
     const onCreatedAgeProof = () =>{
-        const id = "789";
+        const id = "123";
         const type = "age";
         const payload = {
             id,
@@ -58,7 +58,7 @@ const AuthScreen = ({navigation, route}) =>{
     }
 
     const onCreatedDriveProof = () =>{
-        const id = "789";
+        const id = "123";
         const type = "drive";
         const payload = {
             id,
@@ -98,7 +98,7 @@ const AuthScreen = ({navigation, route}) =>{
     }
 
     const onCreatedProfessionProof = () =>{
-        const id = "789";
+        const id = "123";
         const type = "profession";
         const payload = {
             id,
@@ -138,7 +138,7 @@ const AuthScreen = ({navigation, route}) =>{
     }
 
     const onSelfVerify = () =>{
-        const id = "789";
+        const id = "123";
         const payload = {
             proof,
             id,

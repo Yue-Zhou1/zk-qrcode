@@ -1,7 +1,8 @@
 import React, { useState, useEffect,Fragment } from 'react';
 import { View, Text, Image, Platform, TouchableOpacity, StyleSheet, Dimensions, Button } from 'react-native';
 
-import {BarCodeScanner} from "expo-barcode-scanner";
+// import {BarCodeScanner} from "expo-barcode-scanner";
+// import { CameraView, Camera } from "expo-camera/next";
 import Constants from 'expo-constants';
 
 const API_URL = Platform.OS === 'ios' ? 'http://10.1.1.164:3000' : 'http://localhost:3000';
