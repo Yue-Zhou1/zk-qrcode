@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+const DEFAULT_USER_ID = '123';
+
 const UserScreen = ({navigation}) =>{
 
     return (
@@ -9,13 +11,13 @@ const UserScreen = ({navigation}) =>{
         <Text style={styles.heading}>I am</Text>
         <View style={styles.form}>
             <TouchableOpacity style={styles.button} onPress={()=>{
-                navigation.navigate('Home', {name: '111'}) 
+                navigation.navigate('Home', { userId: DEFAULT_USER_ID }) 
             }}>
                 <Text style={styles.buttonText}>User</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.buttonAlt} onPress={()=>{
-                navigation.navigate('Verify', {name: '111'}) 
+                navigation.navigate('Verify', { userId: DEFAULT_USER_ID }) 
             }}>
                 <Text style={styles.buttonAltText}>Verifier</Text>
             </TouchableOpacity>
