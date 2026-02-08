@@ -28,3 +28,57 @@ External libaries and tools used to construct this demo application:
 + [snark.js](https://github.com/iden3/snarkjs): Generate zero-knowledge proof(Groth16, Plonk...)
 + [MongoDB](https://www.mongodb.com/): Free cloud database
 + [Expo](https://expo.dev/): For multiple platform test
+
+## Runtime setup
+
+1. Copy `.env.example` to `.env` and fill in database/zk paths.
+2. Install backend dependencies:
+   - `npm install`
+3. Start backend in TypeScript dev mode:
+   - `npm run dev`
+4. Build and run production bundle:
+   - `npm run build`
+   - `npm run start:prod`
+
+### Mobile app setup
+
+1. Copy `mobile/.env.example` to `mobile/.env`.
+2. Set `EXPO_PUBLIC_API_URL` to the backend address reachable by your device/emulator.
+3. Install and run:
+   - `cd mobile && npm install`
+   - `npm run start`
+
+## API routes
+
+- New versioned routes:
+  - `POST /api/v1/proofs`
+  - `POST /api/v1/proofs/verify`
+  - `POST /api/v1/identity-qr`
+  - `POST /api/v1/identity-qr/verify`
+- Legacy routes are still supported for backward compatibility:
+  - `/cp`, `/vp`, `/cmt`, `/vmt`
+
+## Build and deployment size
+
+- Backend now supports minified bundling with `esbuild`:
+  - `npm run build`
+  - output: `dist/server.js`
+- Mobile/web builds already use Expo/Metro bundling and minification.
+  - For this project, adding webpack is not necessary; Metro is the modern default for Expo.
+
+## Reproducing ZK runtime files
+
+The app runtime requires these files:
+- `controllers/circuit.wasm`
+- `controllers/circuit_final.zkey`
+- `controllers/verification_key.json`
+
+Heavy zk setup/intermediate artifacts are intentionally untracked. To regenerate runtime files from source:
+
+1. Ensure prerequisites are installed:
+   - `circom` CLI
+   - Node.js/npm (for `npx snarkjs`)
+2. Run:
+   - `./scripts/zk/reproduce-runtime-artifacts.sh`
+
+Circuit source is kept in repo at `controllers/circuit.circom` for reproducibility.
