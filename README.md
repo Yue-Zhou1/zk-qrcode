@@ -4,7 +4,7 @@ A QR code-based distributed anonymous credential system using zero-knowledge pro
 
 Prove claims about yourself (age, driving licence, profession) **without revealing personal data** — by scanning a QR code containing a ZK-SNARK proof.
 
-> For the full academic treatment, see the [project manuscript](https://github.com/Yue-Zhou1/zk-qrcode/blob/master/zk_qrcode_full.pdf).
+> For the full academic treatment, see the [project manuscript](https://github.com/Yue-Zhou1/zk-qrcode/blob/main/zk_qrcode_full.pdf).
 
 ---
 
@@ -33,7 +33,6 @@ The system uses a **two-step verification process**:
 |-------|---------------|-----------|
 | `age` | User's age meets minimum | >= 18 |
 | `drive` | Driving qualification level | >= 2 |
-| `profession` | Professional status (e.g. student) | >= 6 |
 
 ---
 
@@ -47,11 +46,11 @@ The system uses a **two-step verification process**:
                   │  trees)     │
                   └──────┬──────┘
                          │
-┌──────────┐      ┌──────┴──────┐      ┌──────────────┐
+┌───────────┐      ┌──────┴──────┐      ┌──────────────┐
 │  Mobile   │◄────►│   Express   │◄────►│  ZK Circuit  │
 │  App      │ API  │   Backend   │      │  (Circom +   │
 │ (Expo/RN) │      │ (TypeScript)│      │   snarkjs)   │
-└──────────┘      └─────────────┘      └──────────────┘
+└───────────┘      └─────────────┘      └──────────────┘
 ```
 
 **Backend** — Express.js + TypeScript API that handles proof generation, verification, and MongoDB persistence
